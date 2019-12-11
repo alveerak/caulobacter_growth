@@ -3,11 +3,11 @@
 # ------------------------------------------------------------------------------
 # This data file contains all information that will be displayed on the home
 # page of your website. The fields `title` and `authors` are necessary. These
-# keys cannot be changed or they will not be displayed on the website. 
+# keys cannot be changed or they will not be displayed on the website.
 #
 # The remainder of the fileds can be changed to fit your needs. The field name
 # (e.g. abstract, summary, etc) Will appear with as H2 headings on the website.
-# The content below will appear 
+# The content below will appear
 
 title: >
   Modeling Microtubule Catastrophe: Gamma Distribution vs. Two-Step Poisson Process
@@ -25,5 +25,5 @@ Summary:  >
   Hashtag affogato chambray vaporware subway tile, kogi helvetica ea tacos sint
   brooklyn. Williamsburg waistcoat raclette seitan glossier messenger bag
   dolore ramps, flannel magna nisi hot chicken elit pariatur kale chips.
-Acknowledgments: > 
+Acknowledgments: >
   Justin Bois, Patrick Almhjell, Cece Andrews, Suzy Beeler, John Ciemniecki, Muir Morrison, Shyam Saladi

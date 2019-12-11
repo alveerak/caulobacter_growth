@@ -1,11 +1,10 @@
 - script:
-  name: script1.py
+  name: Cell_Division_Growth_Rate.ipynb
   desc: >
-    Super fancy script which calcualate some complicated stuff with
-    well-documented code.
+    This iPython Notebook explores the rate at which cells grow when dividing,
+    by analyzing Sir Iyer-Biswas's raw image data (downloadable).
 - script:
-  name: script2.py
+  name: Cell_Division_Events.ipynb
   desc: >
-    Yet another script that does something-or-other.
-
-
+    This iPython Notebook looks at cell division events from the
+    successful pre-processed data set.

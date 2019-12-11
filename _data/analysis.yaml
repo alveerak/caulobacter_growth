@@ -3,25 +3,38 @@
 # ------------------------------------------------------------------------------
 # This data file contains all information that will be displayed on the home
 # page of your website. The fields `title` and `authors` are necessary. These
-# keys cannot be changed or they will not be displayed on the website. 
+# keys cannot be changed or they will not be displayed on the website.
 #
 # The remainder of the fileds can be changed to fit your needs. The field name
 # (e.g. abstract, summary, etc) Will appear with as H2 headings on the website.
-# The content below will appear 
+# The content below will appear
 
 title: >
   Analysis
 authors: >
-  
-Generating ECDFs: >
-  We replotted the ECDFs of microtubulin fluorescence using the data provided by Gardner and Zanic et al using holoviews.
 
-Simulating Microtubule Catastrophe:  >
-  Gardner, Zanic et al. hypothesized microtubule catastrophe to be 
-  
-Confidence Intervals: >
+Choosing and Performing Segmentation on a Caulobacter crescentus cell: >
+  We replotted the ECDFs of microtubulin fluorescence using the data provided by
+  Gardner and Zanic et al using holoviews.
+
+Graphing Area over time for both dividing bacteria:  >
+  Gardner, Zanic et al. hypothesized microtubule catastrophe to be
+
+Color Code Growth Events: >
   Justin Bois, Patrick Almhjell, Cece Andrews, Suzy Beeler, John Ciemniecki, Muir Morrison, Shyam Saladi
-  
-Maximum Likelihood Estimations: >
 
-Comparison of Models: >
+ECDFs and Analysis of Time Difference: |
+    Bacteria 1:
+    - Median: 96.0
+    - Mean: 95.73684210526316
+    - Variance: 35.24653739612189
+    - Standard Deviation: 5.936879432506768
+
+    Bacteria 2:
+    - Median: 99.0
+    - Mean: 100.70930232558139
+    - Variance: 104.0201460248783
+    - Standard Deviation: 10.19902671949036
+
+Acknowledgments: >
+  Justin Bois, Patrick Almhjell, Cece Andrews, Suzy Beeler, John Ciemniecki, Muir Morrison, Shyam Saladi

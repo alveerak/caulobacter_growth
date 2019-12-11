@@ -3,7 +3,7 @@ layout: page
 title: About
 description: Information about the project, website, and links to the paper and SI
 img: about.png # Add image post (optional)
-caption: "Microtubule Co-Pelleting Assay | PurSolutions"
+caption: "Billini M, Biboy J, Kühn J, Vollmer W, Thanbichler M (2019)"
 permalink: index.html
 sidebar: true
 ---
