@@ -14,7 +14,7 @@ Please save all datasets into a data subdirectory, and all notebooks in another 
               |                    |
            code                    data
            |                          |
-        *.ipynb               iyer_biswas_et_al, *.csv
+    *.ipynb, *.py           iyer_biswas_et_al, *.csv
 
 {% if site.data.code %}
 ## Code
