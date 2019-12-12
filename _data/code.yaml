@@ -8,3 +8,16 @@
   desc: >
     This iPython Notebook looks at cell division events from the
     successful pre-processed data set.
+
+- script:
+  name: Caulobacter_Modeling.ipynb
+  desc: >
+    This iPython Notebook uses MLE and log-likelihood to try to
+    model growth during division as linear and exponential. Check out
+    analysis to see which one was better!
+
+- script:
+  name: caulobacter.py
+  desc: >
+    This module contains helper functions that will be called in the above 
+    notebooks.

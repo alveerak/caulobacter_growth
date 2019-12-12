@@ -44,6 +44,14 @@ interactive: interactive_1.html
 
 {% endif %}
 
+{% if entry[0] == 'Generative Model and Parameter Estimates' %}
+
+<img src="{{ site.baseurl }}/assets/img/graph7.png" width="500" height="400">
+<img src="{{ site.baseurl }}/assets/img/graph8.png" width="500" height="400">
+<img src="{{ site.baseurl }}/assets/img/graph9.png" width="500" height="400">
+
+{% endif %}
+
 {% if entry[0] == 'Acknowledgments' %}
 
 {% endif %}

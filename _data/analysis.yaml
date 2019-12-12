@@ -13,15 +13,14 @@ title: >
   Analysis
 authors: >
 
-Choosing and Performing Segmentation on a Caulobacter crescentus cell: >
-  We replotted the ECDFs of microtubulin fluorescence using the data provided by
-  Gardner and Zanic et al using holoviews.
+Choosing and Performing Segmentation on a Caulobacter crescentus cell: |
+  We first chose a bacteria cell to perform segmentation on that will give minimal errors (i.e. not obscured by other cells and not obscured by daughter cells).
 
-Graphing Area over time for both dividing bacteria:  >
-  Gardner, Zanic et al. hypothesized microtubule catastrophe to be
+Graphing Area over time for both dividing bacteria:  |
+  We then looked at 2 TIF stacks, each of a single bacteria cell. For each, we performed segmentation to calculate the area over time of the cell as it is dividing.
 
-Color Code Growth Events: >
-  Justin Bois, Patrick Almhjell, Cece Andrews, Suzy Beeler, John Ciemniecki, Muir Morrison, Shyam Saladi
+Color Code Growth Events: |
+  We labeled all the different growth events by annotating each frame with a growth event identifier and plotted the bacterial area over time colored by different growth events (see figure below). We then made ECDFs of the time points in between each growth event. We expect the Caulobacter cell growth time differences to distribute normally. The story of normal distribution states that any quantity that is derived from the sum of a large number of subprocesses is normally distributed. In this case, we are comparing a large number of cell growth times, which is similar to the story of normal distribution. Therefore, we expect the time differences to distribute along a normal distribution. After plotting, we found the distribution to be normal as expected. This is clearly seen in the time differences for Bacteria 2 since there is a sufficient number of data points, whereas Bacteria 1 has an insufficient number of data points, making it appear similar to a linear CDF. Standard statistical observations including median, mean, variance and standard deviation are include below:
 
 ECDFs and Analysis of Time Difference: |
     Bacteria 1:
@@ -35,6 +34,32 @@ ECDFs and Analysis of Time Difference: |
     - Mean: 100.70930232558139
     - Variance: 104.0201460248783
     - Standard Deviation: 10.19902671949036
+    
+    The means and medians of the two bacteria are similar, but the variance and standard deviation are significantly different, which support our theory regarding the insufficient data for bacteria 1. Thus, it appears that the growth time difference for different Caulobacter cells follow a normal distribution with the same mean and variance, if collected with enough data points.
+    
+Generative Model and Parameter Estimates: |
+  We considered two different models for bacteria growth - linear and exponential. We developed generative models for each.
+  
+  For the linear model:
+  Given the measurements are iid, we can model the residual $$e_i$$ by assuming homoscedastic error. Thus we get:
 
+  $$f(e_i;\sigma) = \frac{1}{\sqrt{2\pi{\sigma}^2}}{e}^{\frac{{-e}^2}{2{\sigma}^2}} \forall i$$
+
+  We can write the PDF for the joint distribution as:
+
+  $$f(a_i;t_i,{a}^0,b,\sigma) = {\left(\frac{1}{\sqrt{2\pi{\sigma}^2}}\right)}^{n/2}exp\left[{\frac{1}{2{\sigma}^2}}\sum_{i=1}^{n} {(a_i - {a}^0 - bt_i)}^2\right] \forall i$$
+
+  In shorthand this is:
+
+  $$a_i \text{~}Norm({a}^0 + bt_i, \sigma) \forall i$$
+
+  
+  We developed the generative model for the exponential model based on the generative model for the linear model. Similarly, the generative model for the exponential model can be written in shorthand as:
+
+  $$a_i \text{~}Norm({a}^0{e}^{kt}, \sigma) \forall i$$
+  
+  Based on this, we were then able to perform parameter estimates for $$a_0$$ and $$k$$ for every single growth event for both bacteria cells. Additionally, we calculated the AIC for each parameter for each growth event under the 2 different models. We plotted one growth event with both generative models and the estimated parameters along with scatter plots for the AIC (colored by exponential vs. linear) for both bacteria. We conclude both graphically and analytically (with the AIC) that the exponential model better fits the data.
+
+  
 Acknowledgments: >
   Justin Bois, Patrick Almhjell, Cece Andrews, Suzy Beeler, John Ciemniecki, Muir Morrison, Shyam Saladi

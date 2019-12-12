@@ -14,11 +14,20 @@ title: >
 authors: >
   Suhash Aravindan, Alveera Khan, Sarah Hou
 Abstract: >
-  We modeled Caulobacter growth with a linear model and an
+  We modeled Caulobacter crescentus growth with a linear model and an
   exponential model to determine which model fits the data
   better. To do so, we used data from Norbert Scherer’s lab
   from UChicago where they imaged single dividing Caulobacter cells.
 Summary:  >
+  Caulobacter crescentus division works as follows:
+      The mother cell is adherent to the a surface through its stalk.
+      Upon division, one of the daughter cells does not have a stalk
+      and is mobile. The system is part of a microfluidic device that
+      gives a constant flow. So, every time a mother cell divides, the
+      un-stalked daughter cell gets washed away. In such a way, the
+      dividing cells are never in a crowded environment and the buffer
+      is always fresh. This also allows for easier segmentation.
+      
   By examining the images, we were able to choose a good candidate cell for
   segmentation. We then graphed the growth events to illustrate the growth rate
   of bacteria when preparing for division. We then labeled growth events, and

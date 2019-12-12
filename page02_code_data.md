@@ -8,6 +8,14 @@ sidebar: true
 
 ---
 
+Please save all datasets into a data subdirectory, and all notebooks in another subdirectory of your choice eg:
+
+              caulobacter_experiment
+              |                    |
+           code                    data
+           |                          |
+        *.ipynb               iyer_biswas_et_al, *.csv
+
 {% if site.data.code %}
 ## Code
 {% for script in site.data.code %}
@@ -27,7 +35,7 @@ sidebar: true
 {% endfor %}
 {% endif %}
 
-{% if site.data.figures %}
+<!-- {% if site.data.figures %}
 ## Figure Generation
 
 {% for fig in site.data.figures %}
@@ -51,4 +59,4 @@ sidebar: true
 </div>
 </article>
 {%endfor%}
-{% endif %}
+{% endif %} -->

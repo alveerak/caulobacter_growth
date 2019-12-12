@@ -1,6 +1,8 @@
 from os.path import join
 import glob
 import os
+import warnings
+import tqdm
 
 import numpy as np
 import pandas as pd
@@ -17,7 +19,11 @@ import skimage.io
 import skimage.morphology
 import skimage.segmentation
 
+import scipy
 import scipy.ndimage
+import scipy.stats as st
+
+import numba
 
 import colorcet
 
@@ -95,3 +101,79 @@ def get_time_diff(df, df_tdiff):
         df_tdiff.at[index - 1, "Time Difference (min)"] = t_diff
 
     return df_tdiff
+
+def area_lin(a0, b, ti):
+    """Function for linear model calculating area."""
+    return a0 + b*ti
+
+def resid_lin(params, ai, ti):
+    """Residual for photobleaching intensities."""
+    a0, b = params
+    return ai - area_lin(a0, b, ti)
+
+def lin_mle_lstq(ai, ti):
+    """Compute MLE for parameters normalized intensity model."""
+    # Optimize least squares
+    res = scipy.optimize.least_squares(
+        resid_lin,
+        np.array([1, 0.01]),
+        args=(ai, ti)
+    )
+
+    # Return results
+    if res.success:
+        # Compute residual sum of squares from optimal params
+        rss_mle = np.sum(resid_lin(res.x, ai, ti)**2)
+        # Compute MLE for sigma
+        sigma_mle = np.sqrt(rss_mle / len(ai))
+        return tuple([x for x in res.x] + [sigma_mle])
+    else:
+        raise RuntimeError('Convergence failed with message', res.message)
+
+def area_exp(a0,k,ti):
+    """Function for exponential model calculating area."""
+    return a0*np.exp(k*ti)
+
+def log_like_area_exp(a0, k, ti):
+    """Log like function for exponential model calculating area."""
+    return np.log(a0) + k*ti
+
+def log_like_resid_exp(params, ai, ti):
+    """Residual for photobleaching intensities."""
+    a0, k = params
+    return np.log(ai) - log_like_area_exp(a0, k, ti)
+
+def log_like_exp_mle_lstq(ai, ti):
+    """Compute MLE for parameters normalized intensity model."""
+    # Optimize least squares
+    res = scipy.optimize.least_squares(
+        log_like_resid_exp,
+        np.array([1, 0.01]),
+        args=(ai, ti)
+    )
+
+    # Return results
+    if res.success:
+        # Compute residual sum of squares from optimal params
+        rss_mle = np.sum(log_like_resid_exp(res.x, ai, ti)**2)
+        # Compute MLE for sigma
+        sigma_mle = np.sqrt(rss_mle / len(ai))
+        return tuple([x for x in res.x] + [sigma_mle])
+    else:
+        raise RuntimeError('Convergence failed with message', res.message)
+
+def log_like_normal_lin(params, ai, ti):
+    """Log likelihood for i.i.d. Normal measurements for
+    linear model with input being logarithm of parameters."""
+
+    a0, k, sig = params
+    mu = area_lin(a0,k*a0, ti)
+    return np.sum(st.norm.logpdf(ai,mu,sig))
+
+def log_like_normal_exp(params, ai, ti):
+    """Log likelihood for i.i.d. Normal measurements for
+    exponential model with input being logarithm of parameters."""
+
+    a0, k, sig = params
+    mu = area_exp(a0,k, ti)
+    return np.sum(st.norm.logpdf(ai,mu,sig))
